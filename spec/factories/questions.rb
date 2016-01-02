@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :question do
+    question_title Faker::Book.title
+    content Faker::Hipster.paragraph
+    association :user
   end
 end
