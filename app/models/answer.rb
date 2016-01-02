@@ -6,6 +6,5 @@ class Answer < ActiveRecord::Base
   has_many :votes, as: :voteable, dependent: :destroy
 
   validates :content, presence: true, length: { minimum: 10 }
-  validates :chosen, inclusion: { in: [true, false] }
 
 end

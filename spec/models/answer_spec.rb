@@ -8,5 +8,16 @@ RSpec.describe Answer, type: :model do
   it { should have_many(:votes) }
 
   before(:each) do
+    @answer = FactoryGirl.create(:answer)
+  end
+
+  it 'requires content to be longer than 10 characters' do
+    @answer.content = "abc"
+    expect(@answer.valid?).to eq false
+  end
+
+  it 'requires content to be longer than 10 characters' do
+    @answer.content = "123456789012334555"
+    expect(@answer.valid?).to eq true
   end
 end
