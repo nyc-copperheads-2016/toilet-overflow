@@ -3,6 +3,8 @@ class CreateAnswers < ActiveRecord::Migration
     create_table :answers do |t|
       t.integer :question_id, { null: false, index: true }
       t.integer :user_id, { null: false, index: true }
+      
+      t.boolean :chosen, { default: null }
       t.string :content, null: false
       
       t.timestamps(null: false)
