@@ -5,4 +5,11 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :comments, as: :commentable
   has_many :votes, as: :voteable
+
+  validates :question_title, :content, :user_id, presence: true
+  validates :question_title, length: {minimum: 10}
+  validates :question_title, length: {maximum: 128}
+
+  validates :content, length: {minimum: 20}
 end
+
