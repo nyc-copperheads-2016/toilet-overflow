@@ -6,4 +6,7 @@ RSpec.describe Answer, type: :model do
   it { should belong_to(:user) }
   it { should have_many(:comments) }
   it { should have_many(:votes) }
+
+  before(:each) do
+  end
 end
