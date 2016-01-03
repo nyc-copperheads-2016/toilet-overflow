@@ -1,0 +1,6 @@
+<div class="answers_list">
+<%@answers.each do |answer|%>
+  <ul>
+    <li><%=render partial: "answer", locals: {answer: answer}%></li>
+  </ul>
+<%end%>

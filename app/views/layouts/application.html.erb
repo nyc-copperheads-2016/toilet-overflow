@@ -7,7 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h2><a href="<%= root_path %>">Toilet Overflow</a></h2>
+  <div class="navbar">
+    <h2><%=link_to "Toilet Overflow", root_path %></h2>
+    <%=link_to "Questions", questions_path %>
+    <%=link_to "Answers", answers_path %>
+  </div>
 <%= yield %>
 
 </body>
