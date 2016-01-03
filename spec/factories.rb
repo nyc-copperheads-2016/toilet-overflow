@@ -23,8 +23,6 @@ FactoryGirl.define do
     content {Faker::Hipster.paragraph}
   end
 
-
-
   factory :comment_question, class: "Comment" do
     content {Faker::Hacker.say_something_smart}
     association :commentable, factory: :question
