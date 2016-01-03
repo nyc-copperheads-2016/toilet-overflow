@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :ensure_logged_in, only:[:new, :create, :update]
 
   def index
     @questions = Question.all
@@ -30,17 +31,18 @@ class QuestionsController < ApplicationController
   def destroy
   end
 
+
   private
 
   def question_params
     params.require(:question).permit(:question_title, :content)
   end
 
-  def separate_tags_and_save(tags, question)
-    tags.downcase.gsub(/,\s+/,"").split(",").each do |tag|
+  def separate_tags_and_save(tagging, question)
+    tagging.split(",").each do |tag|
+      tag.downcase.gsub(/,\s+/,"")
       question.tags.find_or_create_by(name: tag)
     end
   end
-
 
 end

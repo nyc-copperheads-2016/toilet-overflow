@@ -18,9 +18,4 @@ describe Tag do
     expect(t.name).to eq(t.name.downcase)
   end
 
-  it "should be parameterized after save" do
-    t = Tag.new(:name => "hello world")
-    t.save
-    expect(t.name).to eq(t.replace_with_dashes)
-  end
 end
