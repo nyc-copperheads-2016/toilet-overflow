@@ -7,16 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h2><a href="<%= root_path %>">Toilet Overflow</a></h2>
-
-  <% if current_user %>
-    Welcome <%= current_user.username %>
-
-    <%= link_to 'Logout', session_path(current_user.id), method: "delete" %>
-  <% else %>
-    <%= link_to 'Login', new_session_path %>
-    <%= link_to "Create Account", new_user_path %>
-  <% end %>
+  <h2><%=link_to "Toilet Overflow", root_path %></h2>
+  <div class="navbar">
+    <% if current_user %>
+      Welcome <%= current_user.username %>
+      <%= link_to 'Logout', session_path(current_user.id), method: "delete" %>
+    <% else %>
+      <%= link_to 'Login', new_session_path %>
+      <%= link_to "Create Account", new_user_path %>
+    <% end %>
+    <%=link_to "Questions", questions_path %>
+    <%=link_to "Answers", answers_path %>
+  </div>
 <%= yield %>
 
 </body>
