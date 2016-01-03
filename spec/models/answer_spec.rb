@@ -25,6 +25,7 @@ RSpec.describe Answer, type: :model do
     10.times do
       @answer.votes << FactoryGirl.create(:answer_vote, voteable: @answer)
     end
+    expect(@answer.votes.first.user).to be_a_kind_of User
     expect(@answer.points > -11).to be true
     expect(@answer.points < 11).to be true
   end
