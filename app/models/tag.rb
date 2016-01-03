@@ -1,8 +1,9 @@
 require 'attribute_normalizer'
+
 class Tag < ActiveRecord::Base
   normalize_attribute :name
-  before_save :to_downcase
-  before_save :replace_with_dashes
+  #before_save :to_downcase
+  #before_save :replace_with_dashes
   has_and_belongs_to_many :questions
   validates :name, uniqueness: true
 

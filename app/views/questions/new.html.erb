@@ -1,0 +1,16 @@
+<h2>Post a new</h2>
+
+<%= form_for @question do |f| %>
+  <div><%= f.label "Question Title: " %>
+  <%= f.text_field :question_title %></div>
+
+  <div><%= f.label "Body: " %>
+  <%= f.text_area :content %></div>
+
+  <div>
+    <label>Tags (separate by commas): </label>
+    <input type="text" name='tags' />
+  </div>
+
+  <%= f.submit %>
+<% end %>
