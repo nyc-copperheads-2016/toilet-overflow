@@ -20,4 +20,13 @@ RSpec.describe Answer, type: :model do
     @answer.content = "123456789012334555"
     expect(@answer.valid?).to eq true
   end
+
+  it 'displays the points of the answer when answer#points is called' do
+    10.times do
+      @answer.votes << FactoryGirl.create(:answer_vote, voteable: @answer)
+    end
+    expect(@answer.votes.first.user).to be_a_kind_of User
+    expect(@answer.points > -11).to be true
+    expect(@answer.points < 11).to be true
+  end
 end
