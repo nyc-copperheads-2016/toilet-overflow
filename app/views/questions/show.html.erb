@@ -1,1 +1,15 @@
-<%= @question.question_title%>
+<h2><%= @question.question_title %></h2>
+<p><%= @question.content %></p>
+
+<p>Comments on Question</p>
+<% @question.comments.each do |qc| %>
+
+<p><%= qc.content %></p>
+<% end %>
+
+<% @answer.each do |a| %>
+  <p>Answer: <%= a.content %></p>
+  <p>Comments for Answer: <% a.comments.each do |c| %>
+    <p>- <%= c.content %></p>
+    <% end %></p>
+<% end %>
