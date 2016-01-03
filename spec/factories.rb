@@ -38,4 +38,25 @@ FactoryGirl.define do
     # not sure on this line as for how we will use it in our rspec
     commentable_type  {"Answer"}
   end
+
+  factory :answer_vote, class: "Vote" do
+    vote {[-1, 1].sample}
+    association :user
+    association :voteable, factory: :answer
+    voteable_type {"Answer"}
+  end
+
+  factory :comment_vote, class: "Vote" do
+    vote {[-1, 1].sample}
+    association :user
+    association :voteable, factory: :comment
+    voteable_type {"Comment"}
+  end
+
+  factory :question_vote, class: "Vote" do
+    vote {[-1, 1].sample}
+    association :user
+    association :voteable, factory: :Question
+    voteable_type {"Question"}
+  end
 end
