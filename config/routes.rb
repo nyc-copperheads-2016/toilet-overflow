@@ -5,15 +5,21 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'questions#index'
 
-  resources :users, only: [:show, :new, :create]
+  resources :users, only: [:show, :new, :create] do
+    resources :votes
+  end
+
   resources :sessions
 
   resources :questions do
     resources :comments
+    resources :votes
+    resources :answers
   end
 
   resources :answers do
     resources :comments
+    resources :votes
   end
 
 

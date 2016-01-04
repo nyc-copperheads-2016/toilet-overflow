@@ -2,7 +2,7 @@
 
 <% @questions.each do |q| %>
   <h4><%= link_to q.question_title, question_path(q) %></h4>
-  <p>Votes: <%= q.votes.count %></p>
+  <p>Votes: <%= q.votes.all.sum(:vote) %></p>
   <p>Answers: <%= q.answers.count %></p>
   <p>Tags:<% q.tags.each do |t| %>
     <%= t.name %>
