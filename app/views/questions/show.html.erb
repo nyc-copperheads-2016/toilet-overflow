@@ -1,17 +1,28 @@
 <h2><%= @question.question_title %></h2>
 <p><%= @question.content %></p>
 
-<p>Comments on Question</p>
-<% @question.comments.each do |qc| %>
+  <p>Comments on Question</p>
+  <% @question.comments.each do |qc| %>
 
-<p><%= qc.content %></p>
-<% end %>
-<p><%= link_to "New Comment", new_question_comment_path(@question.id) %></p>
 
-<% @answer.each do |a| %>
-  <p>Answer: <%= a.content %></p>
-  <p>Comments for Answer: <% a.comments.each do |c| %>
-    <p>- <%= c.content %></p>
-    <% end %></p>
-  <p> <%= link_to "New Comment", new_answer_comment_path(a.id) %></p>
+  <p><%= qc.content %></p>
+  <% end %>
+  <p><%= link_to "New Comment", new_question_comment_path(@question.id) %></p>
+
+  <% if !!@fav_answer %>
+    <h4>Favorite Answer: <%= @fav_answer[-1].content %></h4>
+  <% end %>
+
+  <% @answer.each do |answer| %>
+    <% unless @fav_answer[-1].id == answer.id %>
+    <h4>Answer: <%= answer.content %></h4>
+      <%= form_for answer do |f| %>
+        <%= f.hidden_field :id %>
+        <%= f.submit "Set as favorite" %>
+      <% end %>
+      <p>Comments for Answer: <% answer.comments.each do |c| %>
+        <p>- <%= c.content %></p>
+      <% end %></p>
+    <p> <%= link_to "New Comment", new_answer_comment_path(answer.id) %></p>
+  <% end %>
 <% end %>

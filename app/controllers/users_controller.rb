@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       session[:user_id] = new_user.id
       redirect_to root_path
     else
-      render :new_user_path
+      redirect_to new_user_path
     end
   end
 
