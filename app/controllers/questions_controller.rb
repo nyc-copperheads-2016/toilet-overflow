@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.includes(:answers, :comments).find(params[:id])
     @answer = @question.answers.includes(:comments)
+    @fav_answer = @question.answers.where(chosen: true)
   end
 
   def new
