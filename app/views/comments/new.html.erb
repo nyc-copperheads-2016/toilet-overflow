@@ -1,0 +1,10 @@
+<h1>Add a comment</h1>
+
+<% if logged_in? %>
+  <div id='comment-form'>
+    <%= form_for [@commentable, @comment] do |f| %>
+      <%= f.text_area :content %>
+      <%= f.submit "Submit Comment" %>
+    <% end %>
+  </div>
+<% end %>
