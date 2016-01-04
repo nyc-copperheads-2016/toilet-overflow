@@ -1,0 +1,6 @@
+<span>
+<%=link_to answer.question.question_title, answer.question%>
+<%=answer.points%> points,
+by: <%=link_to answer.user.username, answer.user%>
+posted on: <%=answer.created_at%>
+</span>
