@@ -33,7 +33,7 @@
 
   <% @answer.each do |answer| %>
 
-  <% if (@fav_answer.id != answer.id) %>
+  <% if (@fav_answer != nil && @fav_answer.id != answer.id) %>
   <h4>Answer: <%= answer.content %></h4>
   <% end %>
 
@@ -44,19 +44,19 @@
         <%= form_for answer do |f| %>
         <%= f.hidden_field :id %>
         <%= f.submit "Set as favorite" %>
-      
-    <% end %>
+        <% end %>
+      <% end %>
   <% end %>
   <p>Comments for Answer:</p>
       <% answer.comments.each do |c| %>
         <p>- <%= c.content %> by <%= c.user.username %></p>
 
       <% end %>
-        <% if logged_in? %>
-          <p><%= link_to "New Comment", new_answer_comment_path(answer.id) %></p>
-        <% end %>
-  <% end %>
-  <% end %>
+      
+      <% if logged_in? %>
+        <p><%= link_to "New Comment", new_answer_comment_path(answer.id) %></p>
+      <% end %>
+<% end %>
   
   
 <% if logged_in? && @question.user.id != current_user.id %>
