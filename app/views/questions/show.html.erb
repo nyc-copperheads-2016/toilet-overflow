@@ -59,7 +59,6 @@
   <% end %>
   
   
-
-<% if logged_in? %>
+<% if logged_in? && @question.user.id != current_user.id %>
 <%= link_to "Submit your own answer", new_question_answer_path(@question) %>
 <% end %>
