@@ -6,10 +6,12 @@
 
 <p><%= qc.content %></p>
 <% end %>
+<p><%= link_to "New Comment", new_question_comment_path(@question.id) %></p>
 
 <% @answer.each do |a| %>
   <p>Answer: <%= a.content %></p>
   <p>Comments for Answer: <% a.comments.each do |c| %>
     <p>- <%= c.content %></p>
     <% end %></p>
+  <p> <%= link_to "New Comment", new_answer_comment_path(a.id) %></p>
 <% end %>
