@@ -2,13 +2,13 @@ class QuestionsController < ApplicationController
   before_action :ensure_logged_in, only:[:new, :create, :update]
 
   def index
-    @questions = Question.all
+    @questions = Question.all.order(created_at: :desc)
   end
 
   def show
     @question = Question.includes(:answers, :comments).find(params[:id])
     @answer = @question.answers.includes(:comments)
-    @fav_answer = @question.answers.where(chosen: true)
+    @fav_answer = @question.answers.where(chosen: true)[0]
   end
 
   def new

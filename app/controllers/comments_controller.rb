@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # byebug
     @comment = @commentable.comments.new(content: params[:comment][:content],user: current_user)
     if @comment.save
       redirect_to root_path

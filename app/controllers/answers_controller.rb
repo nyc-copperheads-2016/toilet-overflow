@@ -22,6 +22,7 @@ class AnswersController < ApplicationController
 
   def update
     answer = Answer.find_by(id: params[:answer][:id])
+    answer.question.answers.where(chosen: true).update_all(chosen: false)
     answer.update_attributes(chosen: true)
     if answer.save
       redirect_to root_path

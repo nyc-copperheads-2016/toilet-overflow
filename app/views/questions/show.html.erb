@@ -16,36 +16,49 @@
 
 <p>Comments on Question</p>
 <% @question.comments.each do |qc| %>
-  <p><%= qc.content %></p>
+  <p><%= qc.content %> by <%= qc.user.username %></p>
 <% end %>
 
 <% if logged_in? %>
   <p><%= link_to "New Comment", new_question_comment_path(@question.id) %></p>
 <% end %>
 
-  <% if @fav_answer[0] %>
-    <h4>Favorite Answer: <%= @fav_answer[0].content %></h4>
+  <% if @fav_answer %>
+      <h4>Favorite Answer: <%= @fav_answer.content %></h4>
+      <p>Favorite Answer's Comments:</p>
+      <% @fav_answer.comments.each do |c| %>
+        <p>- <%= c.content %> by <%= c.user.username %></p>
+      <% end %>
   <% end %>
 
-<% @answer.each do |answer| %>
+  <% @answer.each do |answer| %>
+
+  <% if (@fav_answer.id != answer.id) %>
+  <h4>Answer: <%= answer.content %></h4>
+  <% end %>
+
   <% if logged_in? %>
-    <% unless (@fav_answer[0] != nil) && (@fav_answer[0].id == answer.id) %>
-    <h4>Answer: <%= answer.content %></h4>
-      <%= form_for answer do |f| %>
+
+      <% if (@fav_answer == nil) || (@fav_answer.id != answer.id) %>
+      
+        <%= form_for answer do |f| %>
         <%= f.hidden_field :id %>
         <%= f.submit "Set as favorite" %>
-      <% end %>
+      
     <% end %>
   <% end %>
-  <p>Comments for Answer: <% answer.comments.each do |c| %>
-    <p>- <%= c.content %></p>
-  <% end %></p>
-<% end %>
+  <p>Comments for Answer:</p>
+      <% answer.comments.each do |c| %>
+        <p>- <%= c.content %> by <%= c.user.username %></p>
 
-  <% if logged_in? %>
-    <p> <%= link_to "New Comment", new_answer_comment_path(answer.id) %></p>
+      <% end %>
+        <% if logged_in? %>
+          <p><%= link_to "New Comment", new_answer_comment_path(answer.id) %></p>
+        <% end %>
   <% end %>
-
-<% if logged_in? %>
-<%= link_to "Submit your answer", new_question_answer_path(@question) %>
+  <% end %>
+  
+  
+<% if logged_in? && @question.user.id != current_user.id %>
+<%= link_to "Submit your own answer", new_question_answer_path(@question) %>
 <% end %>
