@@ -13,14 +13,14 @@ u = User.create(username: "jay", password_digest: "hi", email: "jay@jay.com")
     end
 
     4.times do
-      a = q.answers.create(content: Faker::Lorem.sentences(3), user_id: User.last.id)
+      a = q.answers.create(content: Faker::Lorem.sentences(3).join(" "), user_id: User.last.id)
       3.times do
-        a.comments.create(content: Faker::Lorem.sentences(1), user_id: User.last.id)
+        a.comments.create(content: Faker::Lorem.sentences(1).join(" "), user_id: User.last.id)
       end
     end
 
     2.times do
-      q.comments.create(content: Faker::Lorem.sentences(1), user_id: User.last.id)
+      q.comments.create(content: Faker::Lorem.sentences(1).join(" "), user_id: User.last.id)
     end
 
   end
